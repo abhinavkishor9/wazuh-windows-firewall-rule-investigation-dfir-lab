@@ -1,2 +1,161 @@
 # wazuh-windows-firewall-rule-investigation-dfir-lab
-DFIR investigation demonstrating Windows Firewall rule analysis using Wazuh Discover. Investigates firewall rule creation, modification, and deletion using native Windows Firewall logs, Event Viewer, PowerShell, and Wazuh while validating endpoint logging without relying on Sysmon.
+## Overview
+
+This Digital Forensics and Incident Response (DFIR) lab demonstrates how Windows Firewall rule activity can be investigated using native Windows logging and Wazuh Discover.
+
+Rather than relying on Sysmon, the investigation uses Windows Defender Firewall with Advanced Security, Event Viewer, PowerShell, and Wazuh Discover to analyze firewall rule creation, modification, and deletion.
+
+The investigation also demonstrates that firewall-related events may vary depending on Windows logging configuration, emphasizing the importance of validating endpoint logs before assuming SIEM collection issues.
+
+---
+
+# Executive Summary
+
+This investigation focused on analyzing Windows Firewall rule activity performed on a Windows endpoint.
+
+The investigation included:
+
+- Creating a test firewall rule
+- Modifying the firewall rule
+- Deleting the firewall rule
+- Reviewing Windows Firewall logs
+- Validating activity using PowerShell
+- Investigating events using Wazuh Discover
+- Troubleshooting missing firewall events
+
+The investigation reinforces structured DFIR methodology by validating Windows event generation before relying on SIEM evidence.
+
+---
+
+# Learning Objectives
+
+- Understand Windows Firewall rule management.
+- Investigate firewall rule creation, modification, and deletion.
+- Review Windows Firewall logs.
+- Validate events using Event Viewer.
+- Verify firewall activity using PowerShell.
+- Investigate events using Wazuh Discover.
+- Troubleshoot missing firewall events.
+- Reconstruct firewall configuration changes.
+
+---
+
+# Skills Demonstrated
+
+- Windows DFIR Investigation
+- Windows Firewall Analysis
+- Event Viewer Analysis
+- PowerShell Event Validation
+- Windows Firewall Operational Log Investigation
+- Wazuh Discover Investigation
+- Timeline Reconstruction
+- Digital Evidence Documentation
+- DFIR Troubleshooting
+- MITRE ATT&CK Mapping
+
+---
+
+# Tools Used
+
+- Wazuh Dashboard (Discover)
+- Windows Defender Firewall with Advanced Security
+- Windows Event Viewer
+- Windows PowerShell
+- Windows Firewall Operational Log
+- Wazuh Agent
+
+---
+
+# Lab Environment
+
+| Component | Details |
+|-----------|---------|
+| SIEM | Wazuh 4.12 |
+| Endpoint | Windows 11 Pro |
+| Server | Oracle Linux 9 |
+| Investigation Type | Windows DFIR |
+| Event Source | Windows Firewall With Advanced Security |
+| Sysmon | Not Used |
+
+---
+
+# Investigation Scenario
+
+A firewall rule was created, modified, and later removed from a Windows workstation.
+
+The investigation aimed to determine:
+
+- Whether firewall rule changes generated Windows events
+- Which logs contained firewall activity
+- Whether Wazuh collected the events
+- Why expected events might not appear
+
+---
+
+# Investigation Workflow
+
+1. Verify Wazuh agent connectivity.
+2. Create a firewall rule.
+3. Modify the firewall rule.
+4. Delete the firewall rule.
+5. Review Windows Firewall logs.
+6. Validate events using PowerShell.
+7. Investigate Wazuh Discover.
+8. Troubleshoot missing events.
+9. Document findings.
+
+---
+
+# MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|---------|-----------|----|
+| Defense Evasion | Impair Defenses: Disable or Modify System Firewall | T1562.004 |
+| Command and Control | Application Layer Protocol (Contextual) | T1071 |
+
+### Why Firewall Rule Investigations Matter
+
+Attackers frequently modify Windows Firewall rules to allow malicious communication, expose services, or bypass endpoint protections. Investigating firewall rule changes helps analysts identify persistence and defense evasion techniques during incident response.
+
+---
+
+# Evidence Collected
+
+- Windows Firewall Rule
+- Windows Firewall Operational Log
+- Event Viewer
+- PowerShell validation
+- Wazuh Discover searches
+
+---
+
+# Evidence Correlation
+
+| Evidence Source | Information Obtained | Investigation Value |
+|-----------------|---------------------|--------------------|
+| Firewall Console | Rule configuration | Primary evidence |
+| Event Viewer | Firewall events | Endpoint validation |
+| PowerShell | Rule verification | Independent verification |
+| Wazuh Discover | SIEM validation | Centralized evidence |
+
+---
+
+# Investigation Findings
+
+- A test firewall rule was successfully created.
+- The firewall rule was modified and deleted.
+- Windows Firewall logs were reviewed for related events.
+- Wazuh Discover was used to validate centralized event collection.
+- The investigation demonstrated that firewall logging depends on Windows configuration and should always be validated before investigating SIEM issues.
+
+---
+
+# Key Takeaways
+
+- Firewall rule changes may indicate defense evasion.
+- Event Viewer should always validate endpoint logging.
+- Wazuh only collects events generated by Windows.
+- Firewall Operational logging may differ across Windows versions.
+- Multiple evidence sources improve investigation reliability.
+
+---
